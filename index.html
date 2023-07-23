@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title of the document</title>
+    <style>
+      
+      input {
+        padding: 4px 10px;
+        border: 0;
+        font-size: 16px;
+      }
+	  #product_image{
+      	padding: 150px 0px 0px 150px
+      }
+
+      #output_link{
+      	padding: 15px 0px 0px 150px
+      }
+      
+      #product_details{
+      	padding: 0px 0px 0px 150px
+      }
+
+      #product_warehouse{
+      	padding: 0px 0px 0px 150px
+      }
+
+      #guidance_text{
+				padding: 70px 0px 0px 150px
+      }
+
+      #all_items_div{
+				padding: 5px 0px 0px 150px
+      }
+
+      #search_box_div{
+      	padding: 10px 0px 0px 150px
+      }
+     
+      #search_button_div{
+      	padding: 10px 0px 0px 150px
+      }
+      
+      .search {
+        width: 70%;
+/*        height: 70%;*/
+        border: 2px solid green;
+  			border-radius: 4px;
+  	
+      }
+      .submit {
+        width: 10%;
+/*        height: 30%;*/
+        background-color: green;
+        color: #ffffff;
+        border: 2px solid green;
+  			border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+	<div id="product_image" style="visibility: hidden;"></div>
+	<div id="output_link" style="visibility: hidden;"></div>
+  	<div id="product_details" style="visibility: hidden;"></div>
+  	<div id="product_warehouse" style="visibility: hidden;"></div>
+	
+	<div style="font-size:20px" font-family='Times New Roman' id='guidance_text'>Kindly paste the product / link id here.</br>Example: Type 7 for product_7 / link_7</div>
+	<div id="search_box_div">
+    		<input type="text" name="text" class="search" placeholder="Paste the id here." id="search_box" >
+	</div>
+
+	<div id="search_button_div">
+				<input type="button" name="Find" class="submit" value="Find" onclick="myFunction()" id="search_button">
+  </div>
+  
+  <div id="all_items_div" style="font-size:20px" font-family='Times New Roman'>See all items:  <a href="https://docs.google.com/document/d/1D5qb48xmltwPjTsVAIePX6S9f7Mj4VO1SKQzb-cSdNA/edit?usp=sharing" target="_blank">Click here.</div>
+  
+  <script>
+		function myFunction() {
+			
+			let product_links_json = {
+//				"": 	{	"link": "",		"details":""}
+				"17":   {	"link": 'https://amzn.to/43ITsJP', 'details':'Samsung Galaxy S23 5G'},
+				"SNA":	{	"link": "https://amzn.to/3JOapf1",	"details": "SNA_TC"	},
+				"15":	{	"link":"https://amzn.to/44jy9zX",	"details":"ENDEAVOUR WEAR Men's Regular Fit Trackpants"	},
+				"14":	{	"link": "https://amzn.to/3XGlQee",	"details": "Xiaomi 11 Lite 5G"	},
+				"13": 	{ 	"link": "https://amzn.to/3XF3ZEI",	"details":"Apple iPhone 14 Pro Max (256 GB)" },
+				"12": 	{ 	"link": "https://amzn.to/3PMnau9", 	"details":"Yellow Chimes Rings, Celtic Inlay Polish Finish Titanium Steel Ring for Men and Boys."	},
+				"7": 	{ 	"link": "https://amzn.to/46G9mHZ",	"details":"boAt Airdopes 141 Bluetooth Wireless Ear Headphones."	},
+				"8": 	{	"link": "https://amzn.to/3JFV6Vv",	"details":"Bourge Mens Loire-z1 Running Shoes."		},
+				"9": 	{	"link": "https://amzn.to/3NBj5Xd",	"details":"House Slipper for Women's Care."	},
+				"10": 	{	"link": "https://amzn.to/3NXjLHy",	"details":"Track Pant for Men."	},
+				"11": 	{	"link": "https://amzn.to/433xXDf",	"details":"SanDisk Cruzer Blade 64GB USB 2.0 Flash Drive."	},
+				"1": 	{ 	"link":"https://amzn.to/3CK2Hym",	"details": "Yellow Chimes Earrings for Women & Girls."	},
+				"2": 	{	"link": "https://amzn.to/3NpcNtK",	"details":"boAt A 350 Type C Cable for Personal Computer, 1.5m (Black)"		},
+				"3": 	{	"link": "https://amzn.to/3NrJ6bd",	"details":"boAt Wave Call Smart Watch"	},
+				"4": 	{	"link": "https://amzn.to/3PGkjCW",	"details":"boAt Rockerz 450 Bluetooth On Ear Headphones with Mic."	},
+				"5": 	{	"link": "https://amzn.to/445eR15",	"details":"boAt Rockerz 245v2 Bluetooth Wireless in Ear Earphones."	},
+				"6": 	{	"link": "https://amzn.to/3PCiKGi",	"details":"OnePlus Bullets Z2 Bluetooth Wireless in Ear Earphones with Mic."	},
+			}
+		
+			
+			user_choice = document.getElementById("search_box").value
+			expected_link = product_links_json[user_choice]["link"]
+			product_desc = product_links_json[user_choice]["details"]
+
+			var str = new String(expected_link);
+			var URL = expected_link;
+
+			// Link for all products : google docx
+			//
+			all_products_link = "https://docs.google.com/document/d/1D5qb48xmltwPjTsVAIePX6S9f7Mj4VO1SKQzb-cSdNA/edit?usp=sharing"
+			var all_products_str = new String( "Click here" ) ;
+			
+			//	Link for images
+			//
+			img_tag = "<img src='./product_images/product_" + user_choice + ".jpg' alt==' Image for product_"+ user_choice + "is not available. Sorry !' width='350' height='350' border='1px solid'>"
+
+
+		  	document.getElementById("search_button_div").style.visibility = 'hidden'
+		  	document.getElementById("search_box_div").style.visibility 		= 'hidden'
+		  	document.getElementById("guidance_text").style.visibility 		= 'hidden'
+		  	document.getElementById("all_items_div").style.visibility 		= 'hidden'
+		  	
+		  	document.getElementById("output_link").style.visibility = 'visible'
+		  	document.getElementById("product_warehouse").style.visibility = 'visible'
+				document.getElementById("product_details").style.visibility = 'visible'
+				document.getElementById("product_image").style.visibility = 'visible'
+
+		  	document.getElementById("output_link").innerHTML = "<p style='font-size:20px'><mark><b>Link for product_</b></mark>"+ user_choice + ":    "  + str.link(URL) + "</p>";
+		  	document.getElementById("product_details").innerHTML = "<p style='font-size:20px'><mark><b>Description</b></mark>: " + product_desc + "</p>";
+		  	document.getElementById("product_warehouse").innerHTML = "<p style='font-size:20px'><mark><b>See all products: </b></mark>: " + all_products_str.link(all_products_link) + "</p>";
+			document.getElementById("product_image").innerHTML = img_tag
+		}
+
+	</script>
+
+
+  </body>
+</html>
+
+
